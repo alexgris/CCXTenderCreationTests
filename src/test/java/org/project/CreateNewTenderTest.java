@@ -144,14 +144,14 @@ public class CreateNewTenderTest {
 
                 try {
                     driver.findElement (By.xpath ("//input[@id='txtUsername-inputEl']")).clear ( );
-                    driver.findElement (By.xpath ("//input[@id='txtUsername-inputEl']")).sendKeys ("shipper");
+                    driver.findElement (By.xpath ("//input[@id='txtUsername-inputEl']")).sendKeys ("s03");
                 } catch (NoSuchElementException e) {
                     logger.error ("No such element - USERNAME field was not found: " + e.getMessage ( ));
                 }
 
                 try {
                     driver.findElement (By.xpath ("//input[@id='txtPassword-inputEl']")).clear ( );
-                    driver.findElement (By.xpath ("//input[@id='txtPassword-inputEl']")).sendKeys ("password");
+                    driver.findElement (By.xpath ("//input[@id='txtPassword-inputEl']")).sendKeys ("admin");
                 } catch (NoSuchElementException e) {
                     logger.error ("No such element - PASSWORD field was not found: " + e.getMessage ( ));
                 }
@@ -2475,6 +2475,11 @@ public class CreateNewTenderTest {
             waitTillDescendentElementsAvailable (30, "//div[@id='silverlightControlHost']/object/descendant::param", "name", "InitParams", "STEP #5 - BIDDING MATRIX Grid");
 
             Thread.sleep (500);
+
+            //Save imported bidding matrix
+            js.executeScript("objShippingMatrix.Content.ShippingMatrixClient.SaveMatrix();");
+            Thread.sleep(7000);
+
 
         } catch (Exception e) {
             logger.error ("Cannot import 'Default.ccx' file on STEP5_BIDDING_MATRIX: " + e.getMessage ( ));
